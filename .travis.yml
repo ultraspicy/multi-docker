@@ -22,3 +22,4 @@ after_success:
   - docker push ultraspicy/multi-nginx
   - docker push ultraspicy/multi-server
   - docker push ultraspicy/multi-worker
+  
