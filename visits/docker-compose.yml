@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    # restart policy
+    restart: on-failure # failure means non-zero exit code 
+    build: . # look up current dir and build the docker file
+    ports:
+      - "8081:8081"

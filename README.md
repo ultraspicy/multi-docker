@@ -22,3 +22,19 @@ Every process in Linux (the docker environment) has STDIN, STDOUT, STDERR channe
   - specify working directory  `WORKDIR <path>`
 
   - one docker instance just host one single service. Node app and redis should reside in different containers  
+ - introducing docker-compose to work with multiple container at the same time
+    - `docker-compose up` to start all container
+    - `docker-compose up --build` to rebuild the image and start all containers 
+    - `docker-compose down` to stop all containers
+    - `docker-compose ps` print all container of docker-compose.yml file in the same direcotry
+    - to deal with container crash, restart policy (no, always, on-failure, unless-stopped)
+
+ - `Dockerfile.dev` is for developement purpose, while `Dockerfile` is for production 
+    - to use `Dockerfile.dev` `docker build -f <filename> .`
+
+ - docker volume, set up a reference on the local machine
+   - `docekr run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image-id>` without colon, `/app/node_modules` is a placeholder that won't be replaced or overwritten
+ - docker-compose can simplify the above command, see ./frontend/docker-compose.yml
+ - override default start command to run the test, like before, `docker run <id> <commadn to run>`, a concrete example would be `docker run -it a781ec npm run test`. When changing the startup command, a new container will be created, meaning the 
+
+  - multi-step build phase to use 2+ base image, like node + nginx
