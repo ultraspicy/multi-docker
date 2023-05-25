@@ -16,3 +16,9 @@ Every process in Linux (the docker environment) has STDIN, STDOUT, STDERR channe
     - install programs `RUN` instructions to use some setup in that OS to do sth
     - startup commmand `CMD` instructions to do your business
     - `-t` to tag, <dockerID(ultraspicy)>/<project-name>:version, sample command `docker build -t <tag> .
+
+  - COPY insturction
+  - port forwarding, this is something we specify when running the container `docker run -p <local-port>:<contatiner-port> <image-name/id>`
+  - specify working directory  `WORKDIR <path>`
+
+  - one docker instance just host one single service. Node app and redis should reside in different containers  
