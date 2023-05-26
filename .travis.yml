@@ -4,6 +4,9 @@ sudo: required # we need super use permission
 services: 
   - docker # install a copy of docker
 
+script:
+  - cd frontend
+
 before_install:
   - docker build -t ultraspicy/docker-react -f ./frontend/Dockerfile.dev . 
 
