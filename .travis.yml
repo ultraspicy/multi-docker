@@ -6,6 +6,7 @@ services:
 
 script:
   - cd frontend
+  - ls
 
 before_install:
   - docker build -t ultraspicy/docker-react -f Dockerfile.dev . 
