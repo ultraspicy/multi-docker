@@ -11,6 +11,18 @@ before_install:
 script:
   - docker run -e CI=true ultraspicy/docker-react npm run test 
 
+deploy:
+  provider: elasticbeanstalk 
+  region: "us-east-1"
+  aop: "docker-react-dev"
+  env: "Docker-react-dev-env"
+  bucket_name: "elasticbeanstalk-us-east-1-014934777327"
+  path: "docker-react-dev" # default to be the same name as the app name
+  on:
+    branch: "master"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
+
 # build image using Dockerfile.DEV 
 
 # how to run test suite
