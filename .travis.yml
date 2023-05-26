@@ -8,7 +8,7 @@ script:
   - cd frontend
 
 before_install:
-  - docker build -t ultraspicy/docker-react -f ./frontend/Dockerfile.dev . 
+  - docker build -t ultraspicy/docker-react -f Dockerfile.dev . 
 
 script:
   - docker run -e CI=true ultraspicy/docker-react npm run test 
