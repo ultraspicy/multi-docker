@@ -10,7 +10,8 @@ services:
       - "3000:3000"
     volumes:
       - /app/node_modules
-      - .:/app
+      # the /app in container with be a file reference of local file
+      - .:/app 
   tests:
     build:  # won't work with `.`, we want to use Dockerfile.dev
       context: .
