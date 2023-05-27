@@ -1,6 +1,7 @@
 # runnign a docker
 sudo: required # we need super use permission
 
+# build image using Dockerfile.DEV 
 services: 
   - docker # install a copy of docker
 
@@ -8,9 +9,11 @@ before_install:
   - cd frontend
   - docker build -t ultraspicy/docker-react -f Dockerfile.dev . 
 
+# how to run test suite
 script:
   - docker run -e CI=true ultraspicy/docker-react npm run test 
 
+# how to deploy the project
 deploy:
   provider: elasticbeanstalk 
   region: "us-east-1"
@@ -23,8 +26,5 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: "$AWS_SECRET_KEY"
 
-# build image using Dockerfile.DEV 
 
-# how to run test suite
-
-# how to deploy the project 
+ 
