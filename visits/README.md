@@ -7,14 +7,13 @@ This application is a demonstration of dockerizing a over simplified node app. T
  - `index.js` implements the counter logic
  - `Dockerfile` containerizes the application by building an image with startup command
  - `docker-compose.yml` use dockerfile and redis image so this tiny application has a in-memory storage
- - `package.json` manages the dependency and version
+ - `package.json` manages the dependency
 
- ### How to run
-
- ```
+ ### How to run 
+```
  cd <path-to-multi-docker>/visits
  docker-compose up --build
- ```
+```
  then open browser with `localhost:8081`
 
 ### Notes
