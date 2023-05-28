@@ -5,7 +5,8 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 
-# even not necessary, still recommended to leave it here. For example, production Dockerfile still need it
+# even not necessary, still recommended to leave it here. 
+# For example, production Dockerfile still need it
 COPY . . 
 
 CMD ["npm", "run", "start"]
