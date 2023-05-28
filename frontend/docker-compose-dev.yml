@@ -1,0 +1,22 @@
+# a quality-of-life script file to get rid of long docker run command such as -p -v
+version: '3'
+
+services:
+  web:
+    build:  # won't work with `.`, we want to use Dockerfile.dev
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      # the /app in container with be a file reference of local file
+      - .:/app 
+  tests:
+    build:  # won't work with `.`, we want to use Dockerfile.dev
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
