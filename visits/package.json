@@ -4,6 +4,7 @@
         "redis": "2.8.0"
     },
     "scripts": {
+        "_comment": "execute npm start or yarn start, the \"start\" script will be executed.",
         "start": "node index.js"
     }
 }
