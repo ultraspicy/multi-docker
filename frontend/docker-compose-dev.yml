@@ -3,7 +3,10 @@ version: '3'
 
 services:
   web:
-    build:  # won't work with `.`, we want to use Dockerfile.dev
+    build:
+      # dont add `.` when specifying file, just use the file name here.
+      # so here, we want to use "Dockerfile.dev"
+      # the file path will be specified in the context
       context: .
       dockerfile: Dockerfile.dev
     ports: 
@@ -11,9 +14,13 @@ services:
     volumes:
       - /app/node_modules
       # the /app in container with be a file reference of local file
-      - .:/app 
+      - .:/app
+    command: ["npm", "run", "start"]
   tests:
-    build:  # won't work with `.`, we want to use Dockerfile.dev
+      # dont add `.` when specifying file, just use the file name here.
+      # so here, we want to use "Dockerfile.dev"
+      # the file path will be specified in the context
+    build:  
       context: .
       dockerfile: Dockerfile.dev
     volumes:
