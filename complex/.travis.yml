@@ -27,4 +27,13 @@ after_success:
   - docker build -t ultraspicy/multi-nginx ./nginx
   - docker build -t ultraspicy/multi-server ./server
   - docker build -t ultraspicy/multi-worker ./worker
+  # take those images and push them to docker hub
+  # Log into the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images
+  - docker push ultraspicy/multi-client
+  - docker push ultraspicy/multi-nginx
+  - docker push ultraspicy/multi-server
+  - docker push ultraspicy/multi-worker
+
 
