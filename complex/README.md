@@ -12,3 +12,12 @@ The modules are
  - `docker-compose up` and then open `http://localhost:3050/`
 
 ## How to deploy this multi-docker app in AWS
+
+## CI/CD Flow
+ - Push code to github
+ - Travis automatically pulls repo
+ - Travis builds a test image, tests code
+ - Travis build prod images
+ - Travis pushes built prod images to Docker hub 
+ - Travis pushes message about a new project image to AWS EB
+ - EB pulls images from Docker hub, deploys
