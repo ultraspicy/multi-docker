@@ -15,8 +15,7 @@ services:
 # build test version of react project
 before_install:
   - cd complex 
-  ### ! change the file path
-  - docker build -t ultraspicy/react-test -f ./complex/client/Dockerfile.dev ./complex/client
+  - docker build -t ultraspicy/react-test -f ./client/Dockerfile.dev ./client
 
 # run tests (only run react for demo)
 script:
