@@ -19,7 +19,7 @@ before_install:
 
 # run tests (only run react for demo)
 script:
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true ultraspicy/react-test npm test
 
 # build prod version of all projects
 after_success:
