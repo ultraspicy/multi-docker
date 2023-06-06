@@ -1,0 +1,62 @@
+version: "3"
+services:
+  # add postgres and redis database in the services landscape
+  postgres:
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  redis:
+    image: "redis:latest"
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3050:80"
+  api:
+    # note: dockerfile will just be the name of the file
+    # DO NOT include the path. Path will be included in the context config
+    build:
+      dockerfile: Dockerfile.dev
+      # tell docker-compose to use the dockerfile in ./server directory
+      context: ./server
+    volumes:
+      # dont override or redirect this thing in container
+      - /app/node_modules
+      # rediect to the service directory
+      - ./server:/app
+    # two syntax to add env var
+    # 1. name=value, set this var as the part of container
+    # 2. name, then the value will be pulled from local machine
+    environment:
+      # redis is the name of another container
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
+  client:
+    environment:
+      - WDS_SOCKET_PORT=0
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
